@@ -12,9 +12,11 @@ class GetPatches():
             print(patch)
             req = requests.get(patch)
             if req.status_code == 200:
-            	patchFileData = req.content.decode('utf-8')
-            	file = os.open(os.getcwd() + '/patches/' + patch.rsplit('/', 1)[-1], os.O_RDWR|os.O_CREAT)
-            	os.write(file, patchFileData.encode())
-            	os.close(file)
-            	print(patch)
-        return
+                patchFileData = req.content.decode('utf-8')
+                
+                if not os.path.exists(os.getcwd() + '/patches'):
+                    os.makedirs(os.getcwd() + '/patches')
+
+                file = os.open(os.getcwd() + '/patches/' + patch.rsplit('/', 1)[-1], os.O_RDWR|os.O_CREAT)
+                os.write(file, patchFileData.encode())
+                os.close(file)

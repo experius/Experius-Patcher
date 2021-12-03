@@ -3,10 +3,10 @@ from Controllers.Patches import Patches
 
 app = Flask(__name__)
 
-@app.route("/patches/<patchNumber>")
-def getPatch(patchNumber):
+@app.route("/patches/<patch>")
+def getPatch(patch):
     patchesController = Patches()
-    return patchesController.execute(patchNumber)
+    return patchesController.execute(patch)
 
 @app.errorhandler(404)
 def page_not_found(error):
