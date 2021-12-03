@@ -8,15 +8,23 @@ class GetPatches():
 
     def getPatches(self):
         self.patches = self.service.collectFiles()
-        for patch in self.patches:
-            print(patch)
-            req = requests.get(patch)
-            if req.status_code == 200:
-                patchFileData = req.content.decode('utf-8')
-                
-                if not os.path.exists(os.getcwd() + '/patches'):
-                    os.makedirs(os.getcwd() + '/patches')
+        patchesDir = os.getcwd() + '/patches'
 
-                file = os.open(os.getcwd() + '/patches/' + patch.rsplit('/', 1)[-1], os.O_RDWR|os.O_CREAT)
-                os.write(file, patchFileData.encode())
-                os.close(file)
+        if not os.path.exists(patchesDir):
+            os.makedirs(patchesDir)
+
+        for patchFolder in self.patches:
+            patches = self.patches[patchFolder]
+            subDir = patchesDir + '/' + patchFolder
+
+            if not os.path.exists(subDir):
+                    os.makedirs(subDir)
+            
+            for patch in patches:
+                req = requests.get(patch)
+                if req.status_code == 200:
+                    patchFileData = req.content.decode('utf-8')
+
+                    file = os.open(subDir + '/' + patch.rsplit('/', 1)[-1], os.O_RDWR|os.O_CREAT)
+                    os.write(file, patchFileData.encode())
+                    os.close(file)

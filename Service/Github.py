@@ -15,8 +15,9 @@ class Github():
         self.__connect()
         req = requests.get('https://api.github.com/repos/magento/quality-patches/contents/patches/', headers={'Authorization': 'Token ' + self.accessToken })
         patchDirs = json.loads(req.content.decode('utf-8'))
-        patchLinks = []
+        patchFolders = {}
         for patchDir in patchDirs:
+            patchLinks = []
             subUrl = patchDir['_links']['self']
             req = requests.get(subUrl)
             patches = json.loads(req.content.decode('utf-8'))
@@ -25,5 +26,6 @@ class Github():
 
                 if patchLink.endswith('.patch'):
                     patchLinks.append(patchLink)
+            patchFolders[patchDir['name']] = patchLinks
 
-        return patchLinks
+        return patchFolders

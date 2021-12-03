@@ -32,4 +32,4 @@ class Bitbucket():
         for patch in patches:
             patchLinks.append(patch['links']['self']['href'])
 
-        return patchLinks
+        return {'experius': patchLinks}

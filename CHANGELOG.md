@@ -6,6 +6,7 @@
 *  [][]Updated gitignore with extra ignored files *(Rens Wolters)*
 *  Added README.md *(Rens Wolters)*
 *  Refactored arguments. Fixed incorrect filecheck on patch retrieval. Removed print statementRefactored arguments. Fixed incorrect filecheck on patch retrieval. Removed print statement *(Rens Wolters)*
-*  Removed limit on bitbucket requests *(Rens Wolters)*
+*  Refactored arguments. Fixed incorrect filecheck on patch retrieval. Removed print statementRemoved limit on bitbucket requests *(Rens Wolters)*
+*  Added folder separation of different providers. Prevents overwriting of patches with the same name *(Rens Wolters)*
 
 
