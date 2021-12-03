@@ -1,4 +1,4 @@
-from flask import Flask, abort
+from flask import Flask
 from Controllers.Patches import Patches
 
 app = Flask(__name__)
