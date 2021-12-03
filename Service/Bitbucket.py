@@ -23,10 +23,8 @@ class Bitbucket():
         composer_packs = json.loads(req.content.decode('utf-8'))
         patches = composer_packs['values']
         patchLinks = []
-        counter = 0
 
-        while 'next' in composer_packs and counter < 2:
-            counter += 1
+        while 'next' in composer_packs:
             req = requests.get(composer_packs['next'], headers={'Authorization': 'Bearer ' + self.accessToken})
             composer_packs = json.loads(req.content.decode('utf-8'))
             patches = patches + composer_packs['values']
