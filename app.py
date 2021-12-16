@@ -9,12 +9,6 @@ def homePage():
     homePageController = Homepage()
     return homePageController.execute()
 
-@app.route("/patches/<subfolder>/<patch>/")
-@app.route("/patches/<subfolder>/<patch>")
-def getPatch(subfolder, patch):
-    patchesController = Patches()
-    return patchesController.execute(subfolder, patch)
-
 @app.route("/patches/")
 @app.route("/patches")
 def getFolders():
@@ -26,6 +20,12 @@ def getFolders():
 def getPatchList(subfolder):
     patchesController = Patches()
     return patchesController.execute(subfolder, None)
+
+@app.route("/patches/<subfolder>/<patch>/")
+@app.route("/patches/<subfolder>/<patch>")
+def getPatch(subfolder, patch):
+    patchesController = Patches()
+    return patchesController.execute(subfolder, patch)
 
 @app.errorhandler(404)
 def page_not_found(error):
