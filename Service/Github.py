@@ -6,7 +6,6 @@ import Service.config
 class Github():
     def __init__(self):
         self.accessToken = ''
-        return
 
     def __connect(self):
         self.accessToken = Service.config.GITHUB_ACCESS_TOKEN

@@ -8,7 +8,7 @@ class GetPatches():
 
     def getPatches(self):
         self.patches = self.service.collectFiles()
-        patchesDir = os.getcwd() + '/patches'
+        patchesDir = os.path.dirname(os.path.realpath(__file__)) + '/../patches'
 
         if not os.path.exists(patchesDir):
             os.makedirs(patchesDir)
@@ -18,7 +18,7 @@ class GetPatches():
             subDir = patchesDir + '/' + patchFolder
 
             if not os.path.exists(subDir):
-                    os.makedirs(subDir)
+                os.makedirs(subDir)
             
             for patch in patches:
                 req = requests.get(patch)

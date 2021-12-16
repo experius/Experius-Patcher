@@ -6,7 +6,6 @@ import Service.config
 class Bitbucket():
     def __init__(self):
         self.accessToken = ''
-        return
 
     def __connect(self):
         req = requests.post('https://bitbucket.org/site/oauth2/access_token',data={
