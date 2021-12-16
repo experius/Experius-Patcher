@@ -1,7 +1,7 @@
-/Service/config.py
 __pycache__/
 /patches/
 /.idea/
+/repositories/
 Dockerfile
 PHP
 Using
