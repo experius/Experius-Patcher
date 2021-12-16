@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>{{ data.title }}</title>
+    </head>
+    <body>
+        <ol>
+            {% for link in data.links %}
+            <li><a href="{{ data.base_url }}{{ data.path }}{{ link }}">{{ data.base_url }}{{ data.path }}{{ link }}</a></li>
+            {% endfor %}
+        </ol>
+    </body>
+</html>

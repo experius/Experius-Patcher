@@ -1,12 +1,31 @@
 from flask import Flask
 from Controllers.Patches import Patches
+from Controllers.Homepage import Homepage
 
 app = Flask(__name__)
 
+@app.route("/")
+def homePage():
+    homePageController = Homepage()
+    return homePageController.execute()
+
+@app.route("/patches/<subfolder>/<patch>/")
 @app.route("/patches/<subfolder>/<patch>")
 def getPatch(subfolder, patch):
     patchesController = Patches()
     return patchesController.execute(subfolder, patch)
+
+@app.route("/patches/")
+@app.route("/patches")
+def getFolders():
+    patchesController = Patches()
+    return patchesController.execute(None, None)
+
+@app.route("/patches/<subfolder>/")
+@app.route("/patches/<subfolder>")
+def getPatchList(subfolder):
+    patchesController = Patches()
+    return patchesController.execute(subfolder, None)
 
 @app.errorhandler(404)
 def page_not_found(error):
