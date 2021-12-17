@@ -15,6 +15,7 @@ class Patches():
 
                 return render_template('linklist.html', data = {
                     'title': 'Patches',
+                    'back': '/',
                     'base_url': Config.BASE_URL,
                     'path': 'patches/', 
                     'links': subDirs
@@ -28,7 +29,8 @@ class Patches():
             patches.sort()
 
             return render_template('linklist.html', data = {
-                'title': subfolder,
+                'title': subfolder.title(),
+                'back': 'patches/',
                 'base_url': Config.BASE_URL,
                 'path': 'patches/' + subfolder + '/',
                 'links': patches
