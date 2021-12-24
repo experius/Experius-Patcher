@@ -3,6 +3,7 @@ import os
 from etc import Config
 
 class Patches():
+
     def execute(self, subfolder, patch):
         if not patch:
             if not subfolder:
@@ -28,12 +29,19 @@ class Patches():
             patches = os.listdir(filePath)
             patches.sort()
 
-            return render_template('linklist.html', data = {
+            links = []
+
+            for ptch in patches:
+                links.append({
+                    'name': ptch
+                })
+
+            return render_template('patchlist.html', data = {
                 'title': subfolder.title(),
                 'back': 'patches/',
                 'base_url': Config.BASE_URL,
                 'path': 'patches/' + subfolder + '/',
-                'links': patches
+                'patches': links
             })
 
         file = os.getcwd() + '/patches/' + subfolder + '/' + patch

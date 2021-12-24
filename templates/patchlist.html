@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>{{ data.title }}</title>
+    </head>
+    <body>
+        <h1>{{ data.title }}</h1>
+        {% if data.back %}
+        <a href="{{ data.base_url }}{{ data.back }}"><h2>Go Back</h2></a>
+        {% endif %}
+        <ol>
+            {% for patch in data.patches %}
+            <li>
+                <a href="{{ data.base_url }}{{ data.path }}{{ patch.name }}">{{ data.base_url }}{{ data.path }}{{ patch.name }}</a>
+            </li>
+            {% endfor %}
+        </ol>
+    </body>
+</html>
