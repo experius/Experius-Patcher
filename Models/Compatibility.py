@@ -13,17 +13,17 @@ class Compatibility():
         patchNum = self.getPatchNum(patch)
         
         if patchNum is None:
-            return True
+            return False
 
         if not self.isExperiusPatch(patchNum):
-            return True
+            return False
         
         if not self.compatibilityExists(patchNum):
-            return True
+            return False
 
-        return self.isCompatible(patchNum)
+        return self.isApplicable(patchNum)
     
-    def getPatchNum(patch):
+    def getPatchNum(self, patch):
         try:
             return patch.split('_')[0]
         except:
@@ -33,7 +33,7 @@ class Compatibility():
         return patchNum.lstrip('0').isnumeric()
     
     def compatibilityExists(self, patchNum):
-        return (self.compatibilityList[patchNum] is not None)
+        return (patchNum in self.compatibilityList is not None)
     
 
     def getModuleVersion(self, module):
@@ -43,7 +43,7 @@ class Compatibility():
 
         return None
 
-    def isCompatible(self, patchNum):
+    def isApplicable(self, patchNum):
         for restrictions in self.compatibilityList[patchNum]:
             isCompatible = True
             for module in restrictions:

@@ -1,6 +1,11 @@
-from flask import Flask
+from flask import Flask, request
+from flask.helpers import url_for
+from werkzeug.utils import redirect
+from Controllers.ComposerUpload import ComposerUpload
 from Controllers.Patches import Patches
 from Controllers.Homepage import Homepage
+from Controllers.CheckComposer import CheckComposer
+from Controllers.ComposerUpload import ComposerUpload
 
 app = Flask(__name__)
 
@@ -26,6 +31,22 @@ def getPatchList(subfolder):
 def getPatch(subfolder, patch):
     patchesController = Patches()
     return patchesController.execute(subfolder, patch)
+
+@app.route("/check/composer/")
+@app.route("/check/composer")
+def checkComposer():
+    checkComposerController = CheckComposer()
+    return checkComposerController.execute()
+
+@app.route("/check/composer/", methods=['POST'])
+@app.route("/check/composer", methods=['POST'])
+def uploadComposer():
+    composerUpload = ComposerUpload()
+    composerlock = request.files['composerlock']
+    if composerlock.filename == '':
+        return redirect(url_for('checkComposer'))
+
+    return composerUpload.execute(composerlock)
 
 @app.errorhandler(404)
 def page_not_found(error):

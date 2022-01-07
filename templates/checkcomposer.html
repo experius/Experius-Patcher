@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>{{ data.title }}</title>
+    </head>
+    <body>
+        <h1>{{ data.title }}</h1>
+        {% if data.back %}
+        <a href="{{ data.base_url }}{{ data.back }}"><h2>Go Back</h2></a>
+        {% endif %}
+        <b>Upload je composer.lock en krijg wat patches teruggepoept!</b>
+        <form method="POST" action="/check/composer" enctype="multipart/form-data">
+            <input type="file" id="lockfile" name="composerlock" accept=".lock">
+            <input type="submit">
+        </form>
+
+        {% if data.result %}
+        <pre>{{ data.result }}</pre>
+        {% endif %}
+    </body>
+</html>
