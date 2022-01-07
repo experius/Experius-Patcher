@@ -7,7 +7,7 @@
         {% if data.back %}
         <a href="{{ data.base_url }}{{ data.back }}"><h2>Go Back</h2></a>
         {% endif %}
-        <b>Upload je composer.lock en krijg wat patches teruggepoept!</b>
+        <b>Upload your composer.lock here and submit. We'll generate a patch snippet for you, based on what patches we know are applicable on your project.</b>
         <form method="POST" action="/check/composer" enctype="multipart/form-data">
             <input type="file" id="lockfile" name="composerlock" accept=".lock">
             <input type="submit">
