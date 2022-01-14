@@ -6,6 +6,7 @@ from Controllers.Patches import Patches
 from Controllers.Homepage import Homepage
 from Controllers.CheckComposer import CheckComposer
 from Controllers.ComposerUpload import ComposerUpload
+from Controllers.ApiPatchesList import ApiPatchesList
 
 app = Flask(__name__)
 
@@ -47,6 +48,11 @@ def uploadComposer():
         return redirect(url_for('checkComposer'))
 
     return composerUpload.execute(composerlock)
+
+@app.route("/api/patches/list/")
+def apiPatchesList():
+    apiPatchesList = ApiPatchesList()
+    return apiPatchesList.execute()
 
 @app.errorhandler(404)
 def page_not_found(error):
