@@ -39,7 +39,7 @@ class Compatibility():
     def getModuleVersion(self, module):
         for mod in self.modules:
             if mod['name'] == module:
-                return module['version']
+                return mod['version']
 
         return None
 
@@ -64,12 +64,15 @@ class Compatibility():
                 if moduleVersion is None:
                     isCompatible = False
                     break
-                
-                if version.parse(moduleVersion) < version.parse(min) or version.parse(moduleVersion) > version.parse(max):
+
+                if min is not None and version.parse(moduleVersion) < version.parse(min):
+                    isCompatible = False
+                    break
+                if max is not None and version.parse(moduleVersion) > version.parse(max):
                     isCompatible = False
                     break
             
             if isCompatible:
-                return True
+                return {'name': module}
 
         return False

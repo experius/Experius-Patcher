@@ -30,10 +30,14 @@ class ComposerUpload():
         patches = os.listdir(basePatchPath)
         patches.sort()
         for patch in patches:
-            if self.compatibility.isCompatible(patch): 
+            module = self.compatibility.isCompatible(patch)
+            if module:
+                moduleName = module['name']
+                if moduleName not in result['extra']['patches']:
+                    result['extra']['patches'][moduleName] = {}
                 patchNum = self.compatibility.getPatchNum(patch)
                 url = Config.BASE_URL + "patches/experius/" + patch
-                result['extra']['patches'][patchNum] = url
+                result['extra']['patches'][moduleName][patchNum] = url
         
         responseData = {
             'title': 'Composer Check',
