@@ -16,7 +16,8 @@
     "0268": [
         {
             "magento/module-email": {
-                "min": "101.0.4"
+                "min": "101.0.4",
+                "max": "101.0.5"
             }
         }
     ],
@@ -24,6 +25,13 @@
         {
             "magento/framework": {
                 "min": "102.0.4"
+            }
+        }
+    ],
+    "0270": [
+        {
+            "magento/module-email": {
+                "min": "101.0.6"
             }
         }
     ]
