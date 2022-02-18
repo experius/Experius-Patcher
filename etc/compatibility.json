@@ -10,7 +10,7 @@
         {
             "magento/module-email": {
                 "min": "101.0.3",
-                "max": "101.0.6"
+                "max": "101.0.7"
             }
         },
         {
@@ -21,12 +21,6 @@
         }
     ],
     "0274": [
-        {
-            "magento/module-email": {
-                "min": "101.0.7",
-                "max": "101.0.7"
-            }
-        },
         {
             "magento/module-email": {
                 "min": "101.1.3"
