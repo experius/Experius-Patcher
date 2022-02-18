@@ -39,7 +39,7 @@ class Compatibility():
     def getModuleVersion(self, module):
         for mod in self.modules:
             if mod['name'] == module:
-                return mod['version']
+                return mod['version'].split('-')[0]
 
         return None
 
