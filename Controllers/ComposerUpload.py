@@ -20,10 +20,7 @@ class ComposerUpload():
         self.compatibility = Compatibility(modules)
 
         result = {
-            'extra': {
-                'composer-exit-on-patch-failure': True,
-                'patches': {}
-            }
+            'patches': {}
         }
 
         basePatchPath = os.getcwd() + "/patches/experius"
@@ -33,11 +30,11 @@ class ComposerUpload():
             module = self.compatibility.isCompatible(patch)
             if module:
                 moduleName = module['name']
-                if moduleName not in result['extra']['patches']:
-                    result['extra']['patches'][moduleName] = {}
+                if moduleName not in result['patches']:
+                    result['patches'][moduleName] = {}
                 patchNum = self.compatibility.getPatchNum(patch)
                 url = Config.BASE_URL + "patches/experius/" + patch
-                result['extra']['patches'][moduleName][patchNum] = url
+                result['patches'][moduleName][patchNum] = url
         
         responseData = {
             'title': 'Composer Check',

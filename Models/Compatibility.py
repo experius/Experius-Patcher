@@ -39,7 +39,7 @@ class Compatibility():
     def getModuleVersion(self, module):
         for mod in self.modules:
             if mod['name'] == module:
-                return mod['version'].split('-')[0]
+                return mod['version']
 
         return None
 
@@ -65,12 +65,36 @@ class Compatibility():
                     isCompatible = False
                     break
 
-                if min is not None and version.parse(moduleVersion) < version.parse(min):
-                    isCompatible = False
-                    break
-                if max is not None and version.parse(moduleVersion) > version.parse(max):
-                    isCompatible = False
-                    break
+                baseVersion = moduleVersion.split('-')[0]
+                patchVersion = 0
+                if len(moduleVersion.split('-')) > 1:
+                    patchVersion = int(moduleVersion.split('-')[1].lstrip('p'))
+
+                if min is not None:
+                    minBaseVersion = min.split('-')[0]
+                    minPatchVersion = 0
+                    if len(min.split('-')) > 1:
+                        minPatchVersion = int(min.split('-')[1].lstrip('p'))
+                    if version.parse(baseVersion) < version.parse(minBaseVersion):
+                        isCompatible = False
+                        break
+                    if baseVersion == minBaseVersion:
+                        if patchVersion < minPatchVersion:
+                            isCompatible = False
+                            break
+
+                if max is not None:
+                    maxBaseVersion = max.split('-')[0]
+                    maxPatchVersion = 0
+                    if len(max.split('-')) > 1:
+                        maxPatchVersion = int(max.split('-')[1].lstrip('p'))
+                    if version.parse(baseVersion) > version.parse(maxBaseVersion):
+                        isCompatible = False
+                        break
+                    if baseVersion == maxBaseVersion:
+                        if patchVersion > maxPatchVersion:
+                            isCompatible = False
+                            break
             
             if isCompatible:
                 return {'name': module}
