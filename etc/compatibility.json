@@ -33,6 +33,7 @@
         {
             "magento/module-security": {
                 "min": "100.4.3"
+            }
         }
     ]
 }
