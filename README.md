@@ -9,12 +9,12 @@ Patches are collected from the following repositories:
 ## How to install
 Make sure you have a valid version of python 3 installed.
 
-1. Run: ```pip install -r requirements.txt```
-4. Create a config.py file in the etc folder based on Config.py.sample. Fill in yout base_url according to the used url.
+1. Run: ```pip3 install -r requirements.txt```
+4. Create a config.py file in the etc folder based on Config.py.sample. Fill in your base_url according to the used url.
 3. Run: ```bash run.sh```
 
 To collect patch files, run one of the following commands:
 
  - Experius Patches: ```python3 GetExperiusPatches.py```
- - Magento Patches: ```python3 GetMagentoPatches.py```
- - Magento Clour PatchesL ```python3 GetCloudPatches.py```
+ - Magento Quality Patches: ```python3 GetMagentoPatches.py```
+ - Magento Cloud Patches: ```python3 GetCloudPatches.py```
