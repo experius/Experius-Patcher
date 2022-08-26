@@ -18,3 +18,11 @@ To collect patch files, run one of the following commands:
  - Experius Patches: ```python3 GetExperiusPatches.py```
  - Magento Quality Patches: ```python3 GetMagentoPatches.py```
  - Magento Cloud Patches: ```python3 GetCloudPatches.py```
+ - Shopware Patches: ```python3 GetShopwarePathes.py```
+
+## How to restart when down
+```
+cd ~/domains/patches.experius.nl
+. env/bin/activate
+python3 /usr/bin/gunicorn app:app --daemon
+```
